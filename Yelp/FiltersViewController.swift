@@ -242,3 +242,4 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
                       ["name" : "Yugoslav", "code": "yugoslav"]]
     }
 }
+
