@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BusinessesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FiltersViewControllerDelegate {
     
     var businesses: [Business]!
     
@@ -62,4 +62,22 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as! UINavigationController
+        let filtersViewController = navigationController.topViewController as! FiltersViewController
+        filtersViewController.delegate = self
+        print("Segue called")
+    }
+    
+    func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
+        let categories = filters["categories"] as? [String]
+        
+        Business.searchWithTerm(term: "Restaurants", sort: nil, categories: categories, deals: nil) {(businesses: [Business]?, error: Error?) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+        }
+    }
+    
+    
+
 }
