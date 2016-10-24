@@ -37,8 +37,11 @@ class BusinessCell: UITableViewCell {
         thumbImageView.layer.cornerRadius = 3
         // http://stackoverflow.com/questions/20449256/how-does-clipstobounds-work
         thumbImageView.clipsToBounds = true
-        
-        
+        //nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+    }
+    
+    override func layoutSubviews() {
+        //nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
