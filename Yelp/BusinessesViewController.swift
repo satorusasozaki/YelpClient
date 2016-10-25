@@ -46,16 +46,16 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
         )
         
         
-        /* Example of Yelp search with more search options specified
-         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-         self.businesses = businesses
-         
-         for business in businesses {
-         print(business.name!)
-         print(business.address!)
-         }
-         }
-         */
+//        //Example of Yelp search with more search options specified
+//         Business.searchWithTerm(term: "Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+//         self.businesses = businesses
+//         
+//         for business in businesses {
+//         print(business.name!)
+//         print(business.address!)
+//         }
+//         }
+ 
         
     }
     
@@ -84,7 +84,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
         let categories = filters["categories"] as? [String]
         MBProgressHUD.showAdded(to: self.view, animated: true)
-
         Business.searchWithTerm(term: "Restaurants", sort: nil, categories: categories, deals: nil) {(businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -114,7 +113,6 @@ extension BusinessesViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Business.searchWithTerm(term: searchBar.text!, completion: { (businesses: [Business]?, error: Error?) -> Void in
-            
             self.businesses = businesses
             self.tableView.reloadData()
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -126,7 +124,6 @@ extension BusinessesViewController : UISearchBarDelegate {
             }
             }
         )
-        
         searchBar.resignFirstResponder()
     }
 }

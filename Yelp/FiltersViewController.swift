@@ -12,13 +12,28 @@ import UIKit
     @objc optional func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String:AnyObject])
 }
 
-class FiltersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate {
+class FiltersViewController: UITableViewController, SwitchCellDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+
     weak var delegate: FiltersViewControllerDelegate?
 
     var categories: [[String:String]]!
     var switchStates = [Int:Bool]()
+    
+    @IBOutlet weak var africanSwitch: UISwitch!
+    @IBOutlet weak var barbequeSwitch: UISwitch!
+    @IBOutlet weak var cafeteriaSwitch: SwitchCell!
+    
+    @IBOutlet weak var bestMatchSwitch: SwitchCell!
+    @IBOutlet weak var distanceSwitch: SwitchCell!
+    @IBOutlet weak var highestRatedSwitch: SwitchCell!
+    
+    @IBOutlet weak var oneMileSwitch: SwitchCell!
+    @IBOutlet weak var fiveMileSwitch: SwitchCell!
+    @IBOutlet weak var tenMileSwitch: SwitchCell!
+    
+    @IBOutlet weak var dealsSwitch: SwitchCell!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
