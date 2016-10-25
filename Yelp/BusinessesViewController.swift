@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class BusinessesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FiltersViewControllerDelegate {
+class BusinessesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FiltersTableViewControllerDelegate {
     
     var businesses: [Business]!
     var searchBar: UISearchBar!
@@ -81,10 +81,13 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
         print("Segue called")
     }
     
-    func filtersViewController(filtersTableViewController: FiltersTableViewController, didUpdateFilters filters: [String : AnyObject]) {
+    func filtersTableViewController(filtersTableViewController: FiltersTableViewController, didUpdateFilters filters: [String : AnyObject]) {
         let categories = filters["categories"] as? [String]
+        let sort = filters["sort"] as? YelpSortMode
+        // let distance
+        let deal = filters["deal"] as? Bool
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        Business.searchWithTerm(term: "Restaurants", sort: nil, categories: categories, deals: nil) {(businesses: [Business]?, error: Error?) -> Void in
+        Business.searchWithTerm(term: "Restaurants", sort: sort, categories: categories, deals: deal) {(businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
             MBProgressHUD.hide(for: self.view, animated: true)
             self.tableView.reloadData()

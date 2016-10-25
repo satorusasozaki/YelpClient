@@ -481,6 +481,7 @@
                         <outlet property="barbequeCategorySwitch" destination="jj3-br-t2K" id="mwB-mk-2bV"/>
                         <outlet property="bestMatchSortSwitch" destination="vCP-AT-TQl" id="i2a-Na-x4P"/>
                         <outlet property="cafeteriaCategorySwitch" destination="JIs-2V-WNn" id="fJj-Sd-niX"/>
+                        <outlet property="dealSwitch" destination="B4q-1r-rfk" id="p8T-YV-b3j"/>
                         <outlet property="distanceSortSwitch" destination="LVc-f2-wXc" id="017-G3-OPV"/>
                         <outlet property="fiveMilesSwitch" destination="d0d-7b-8ue" id="27G-RU-AKF"/>
                         <outlet property="highestRatedSwitch" destination="5Uy-Ti-Cs5" id="1dy-1K-xcK"/>
