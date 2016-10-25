@@ -9,30 +9,28 @@
 import UIKit
 
 @objc protocol FiltersViewControllerDelegate {
-    @objc optional func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String:AnyObject])
+    @objc optional func filtersViewController(filtersViewController: FiltersTableViewController, didUpdateFilters filters: [String:AnyObject])
 }
 
-class FiltersViewController: UITableViewController, SwitchCellDelegate {
-
+class FiltersTableViewController: UITableViewController, SwitchCellDelegate {
 
     weak var delegate: FiltersViewControllerDelegate?
 
     var categories: [[String:String]]!
     var switchStates = [Int:Bool]()
     
-    @IBOutlet weak var africanSwitch: UISwitch!
-    @IBOutlet weak var barbequeSwitch: UISwitch!
-    @IBOutlet weak var cafeteriaSwitch: SwitchCell!
+    @IBOutlet weak var africanCategorySwitch: UISwitch!
+    @IBOutlet weak var barbequeCategorySwitch: UISwitch!
+    @IBOutlet weak var cafeteriaCategorySwitch: UISwitch!
     
-    @IBOutlet weak var bestMatchSwitch: SwitchCell!
-    @IBOutlet weak var distanceSwitch: SwitchCell!
-    @IBOutlet weak var highestRatedSwitch: SwitchCell!
+    @IBOutlet weak var bestMatchSortSwitch: UISwitch!
+    @IBOutlet weak var distanceSortSwitch: UISwitch!
+    @IBOutlet weak var highestRatedSwitch: UISwitch!
     
-    @IBOutlet weak var oneMileSwitch: SwitchCell!
-    @IBOutlet weak var fiveMileSwitch: SwitchCell!
-    @IBOutlet weak var tenMileSwitch: SwitchCell!
+    @IBOutlet weak var oneMileSwitch: UISwitch!
+    @IBOutlet weak var fiveMilesSwitch: UISwitch!
+    @IBOutlet weak var tenMilesSwitch: UISwitch!
     
-    @IBOutlet weak var dealsSwitch: SwitchCell!
     
     
     override func viewDidLoad() {
@@ -64,19 +62,6 @@ class FiltersViewController: UITableViewController, SwitchCellDelegate {
         dismiss(animated: true, completion: {})
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell", for: indexPath) as! SwitchCell
-        cell.switchLabel.text = categories[indexPath.row]["name"]
-        cell.delegate = self
-        
-        cell.onSwitch.isOn = switchStates[indexPath.row] ?? false
-        
-        return cell
-    }
     
     // this is called when switch value is changed in SwitchCell object
     func switchCell(switchCell: SwitchCell, didChangeValue value: Bool) {
