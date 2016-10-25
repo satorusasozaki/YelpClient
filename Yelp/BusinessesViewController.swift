@@ -67,7 +67,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
         cell.business = businesses[indexPath.row]
         return cell
@@ -84,11 +83,27 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
     func filtersTableViewController(filtersTableViewController: FiltersTableViewController, didUpdateFilters filters: [String : AnyObject]) {
         let categories = filters["categories"] as? [String]
         let sort = filters["sort"] as? YelpSortMode
-        // let distance
+        let distanceFilter = filters["distance"] as? Double
+        
         let deal = filters["deal"] as? Bool
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Business.searchWithTerm(term: "Restaurants", sort: sort, categories: categories, deals: deal) {(businesses: [Business]?, error: Error?) -> Void in
-            self.businesses = businesses
+            
+            
+            if let distanceFilter = distanceFilter {
+                self.businesses = [Business]()
+                if let businesses = businesses {
+                    for business in businesses {
+                        if let distance = business.distanceInDouble {
+                            if distance < distanceFilter {
+                                self.businesses.append(business)
+                            }
+                        }
+                    }
+                }
+            } else {
+                self.businesses = businesses
+            }
             MBProgressHUD.hide(for: self.view, animated: true)
             self.tableView.reloadData()
         }

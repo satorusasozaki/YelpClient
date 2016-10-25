@@ -14,6 +14,7 @@ class Business: NSObject {
     let imageURL: URL?
     let categories: String?
     let distance: String?
+    let distanceInDouble: Double?
     let ratingImageURL: URL?
     let reviewCount: NSNumber?
     
@@ -61,8 +62,10 @@ class Business: NSObject {
         if distanceMeters != nil {
             let milesPerMeter = 0.000621371
             distance = String(format: "%.2f mi", milesPerMeter * distanceMeters!.doubleValue)
+            distanceInDouble = milesPerMeter * distanceMeters!.doubleValue
         } else {
             distance = nil
+            distanceInDouble = nil
         }
         
         let ratingImageURLString = dictionary["rating_img_url_large"] as? String

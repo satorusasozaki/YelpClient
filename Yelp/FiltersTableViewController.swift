@@ -87,6 +87,15 @@ class FiltersTableViewController: UITableViewController, SwitchCellDelegate {
         filters["sort"] = selectedSort as AnyObject
         
         // distance
+        var selectedDistance = 10.00
+        if oneMileSwitch.isOn {
+            selectedDistance = 0.1
+        } else if fiveMilesSwitch.isOn {
+            selectedDistance = 0.5
+        } else if tenMilesSwitch.isOn {
+            selectedDistance = 1
+        }
+        filters["distance"] = selectedDistance as AnyObject
         
         // deals
         var isDealSelected = false
@@ -94,8 +103,6 @@ class FiltersTableViewController: UITableViewController, SwitchCellDelegate {
             isDealSelected = true
         }
         filters["deal"] = isDealSelected as AnyObject
-        
-        
         
         // if delegate exists and it implements this method, call it
         delegate?.filtersTableViewController?(filtersTableViewController: self, didUpdateFilters: filters)
