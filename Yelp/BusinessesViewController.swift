@@ -30,9 +30,8 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
         
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
-            
             self.businesses = businesses
             self.tableView.reloadData()
             if let businesses = businesses {
@@ -41,9 +40,8 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
                     print(business.address!)
                 }
             }
-            
-            }
-        )
+            MBProgressHUD.hide(for: self.view, animated: true)
+        })
         
         
 //        //Example of Yelp search with more search options specified
