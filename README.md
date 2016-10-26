@@ -39,6 +39,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 1. Data persistence
 Passing objects with delegate or closure is not really efficient. Why don't we use UserDefault or something to store data in server-like objects and retrieve it?
 When to use delegate and closure?
+Need to practice more of implementing delegate and protocol.
 
 2. Cell Configuration in code for Static Table View
 Having as many outlet as static cells does not look cool. Anyways to do it cooler? Maybe dynamic table view? But that way you cannot have grouped cells.
